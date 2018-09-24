@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text } from "react-native";
 
-class AuthScreen extends Component {
+class AuthScreen extends React.Component {
     render(){
         return (
             <View>
-                <Text>AuthScreen</Text>
-                <Text>AuthScreen</Text>
-                <Text>AuthScreen</Text>
-                <Text>AuthScreen</Text>
-                <Text>AuthScreen</Text>
                 <Text>AuthScreen</Text>
             </View>
         )

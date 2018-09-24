@@ -1,21 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation';
+
+import AuthScreen from './screens/AuthScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
 
 export default class App extends React.Component {
   render() {
+    // create the first navigator
+    const MainNavigator = createBottomTabNavigator({
+      welcome: WelcomeScreen,
+      auth: AuthScreen,
+    });
+
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+      <View>
+        <MainNavigator />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
