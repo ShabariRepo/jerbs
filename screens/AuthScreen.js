@@ -6,6 +6,9 @@ class AuthScreen extends React.Component {
         return (
             <View>
                 <Text>AuthScreen</Text>
+                <Text>AuthScreen</Text>
+                <Text>AuthScreen</Text>
+                <Text>AuthScreen</Text>
             </View>
         )
     }

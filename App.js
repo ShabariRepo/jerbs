@@ -9,12 +9,12 @@ export default class App extends React.Component {
   render() {
     // create the first navigator
     const MainNavigator = createBottomTabNavigator({
-      welcome: WelcomeScreen,
-      auth: AuthScreen,
+      welcome: { screen: WelcomeScreen },
+      auth: { screen: AuthScreen },
     });
 
     return (
-      <View>
+      <View style={{flex: 1}}>
         <MainNavigator />
       </View>
     );
