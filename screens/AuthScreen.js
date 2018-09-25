@@ -8,7 +8,8 @@ class AuthScreen extends React.Component {
     // call facebookLogin from auth_actions
     componentWillMount(){
         this.props.facebookLogin();
-        AsyncStorage.removeItem('fb_token');
+        // to remove the token when authscreen starts
+        //AsyncStorage.removeItem('fb_token');
     }
 
     render(){
