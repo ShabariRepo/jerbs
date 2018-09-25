@@ -21,6 +21,8 @@ class WelcomeScreen extends React.Component {
 
         if(token){
             this.props.navigation.navigate('map');
+            // dont need below it worked without it but guy used it so.. meh
+            this.setState({ token });
         } else {
             this.setState({ token: false });
         }
