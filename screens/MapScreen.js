@@ -17,12 +17,19 @@ class MapScreen extends Component {
     // set the state once the map has loaded
     // fixes map location and loading, sometimes the map doesnt load and the region is set and causes an issue
     // this will wait until the component is loaded before setting the map and value
-    componentDidMount(){
+    componentDidMount() {
         this.setState({ mapLoaded: true });
     }
-    
-    render(){
-        if(!this.state.mapLoaded){
+
+    // track where the user goes with the map
+    onRegionChangeComplete = (region) => {
+        //console.log(region); // to see if the dragging returns a location and stuff
+        // take the region object and update state
+        this.setState({ region });
+    }    
+
+    render() {
+        if (!this.state.mapLoaded) {
             return (
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <ActivityIndicator size="large" />
@@ -32,9 +39,10 @@ class MapScreen extends Component {
         return (
             // expand and fill all the area on the screen with flex 1
             <View style={{ flex: 1 }}>
-                <MapView 
-                region={this.state.region}
-                style={{ flex: 1 }} 
+                <MapView
+                    region={this.state.region}
+                    style={{ flex: 1 }}
+                    onRegionChangeComplete={this.onRegionChangeComplete}
                 />
             </View>
         );
