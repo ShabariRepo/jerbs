@@ -7,6 +7,8 @@ import {
     FETCH_JOBS
 } from './types';
 
+import JOB_DATA from './IndeedJobData.json';
+
 const JOB_ROOT_URL = 'https://api.indeed.com/ads/apisearch?';
 // const for query params for indeed
 const JOB_QUERY_PARAMS = {
@@ -34,31 +36,36 @@ export const fetchJobs = (region) => async dispatch => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         console.log(status);
 
-        if (status === 'granted') {
-            // deconstruct lat and long from region
-            const { latitude, longitude } = region;
-
-            // use google geocode api to get the address
-            const address = await Location.reverseGeocodeAsync({ latitude, longitude }).catch(
-                error => {
-                    return console.log("Error: " + error);
-                }
-            );
-            // debugs
-            console.log(latitude, longitude);
-            console.log(address);
-
-            //let zip = await reverseGeocode(region);
-            //const url = buildJobsUrl(zip);
-            // what we want is nested in a property called data so deconstruct from it
-            //let { data } = await axios.get(url);
-            //console.log(data);
-
-            // call dispatcher to update the payload
-            dispatch({ type: FETCH_JOBS, payload: address });
-        } else {
-            console.log(`Access Denied: ${status}`)
+        if (status !== 'granted') {
+            this.setState({
+                errorMessage: 'Permission to access location was denied',
+            });
         }
+        // deconstruct lat and long from region
+        const { latitude, longitude } = region;
+
+        // use google geocode api to get the address
+        const address = await Location.reverseGeocodeAsync({ latitude, longitude }).catch(
+            error => {
+                return console.log("Error: " + error);
+            }
+        );
+        // debugs
+        console.log(latitude, longitude);
+        console.log(address);
+
+        // get the url and fetch from it
+        // this guy's key doesnt work
+        //let zip = await reverseGeocode(region);
+        let zip = address[0].postalCode;
+        console.log(zip);
+        const url = buildJobsUrl(zip);
+        // what we want is nested in a property called data so deconstruct from it
+        //let { data } = await axios.get(url);
+        //console.log(data);
+        console.log(JOB_DATA);
+        // call dispatcher to update the payload // this would be the data var but were using statics from above json file
+        dispatch({ type: FETCH_JOBS, payload: JOB_DATA });
     } catch (err) {
         console.log(err);
     }
