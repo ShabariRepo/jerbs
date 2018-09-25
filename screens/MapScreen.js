@@ -35,7 +35,12 @@ class MapScreen extends Component {
     // button press
     onButtonPress = () => {
         // fire off the query from job_actions
-        this.props.fetchJobs(this.state.region);
+        // we are going to get the reducer to navigate them to next since it will determine if state is good
+        // second arg arrow function as a callback
+        // this function will still have access to the props that are in the mapsScreen component
+        this.props.fetchJobs(this.state.region, () => {
+            this.props.navigation.navigate('deck');
+        });
     }
 
     render() {

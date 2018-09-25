@@ -29,7 +29,7 @@ const buildJobsUrl = (zip) => {
 // because its a network call its an async action creator (redux thunk)
 // whenever we return a function with an action creator with redux thunk
 // function will be called with the dispatcher
-export const fetchJobs = (region) => async dispatch => {
+export const fetchJobs = (region, callback) => async dispatch => {
     try {
         console.log('Asking for Permissions...');
         // this sends a popup for the user to ask to use location
@@ -66,6 +66,9 @@ export const fetchJobs = (region) => async dispatch => {
         console.log(JOB_DATA);
         // call dispatcher to update the payload // this would be the data var but were using statics from above json file
         dispatch({ type: FETCH_JOBS, payload: JOB_DATA });
+        
+        // send the user over to the deck screen
+        callback();
     } catch (err) {
         console.log(err);
     }
