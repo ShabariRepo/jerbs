@@ -15,6 +15,8 @@ class MapScreen extends Component {
     }
 
     // set the state once the map has loaded
+    // fixes map location and loading, sometimes the map doesnt load and the region is set and causes an issue
+    // this will wait until the component is loaded before setting the map and value
     componentDidMount(){
         this.setState({ mapLoaded: true });
     }
