@@ -30,7 +30,15 @@ export default class App extends React.Component {
           }
         })
       }
-    });
+    }, {
+      // by default react Navigation React Native Nav will render all the screens passed in above
+      // so this is why FB nav function fires even on the welcome screen
+      // so lazy load and disable eager loading
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      lazy: true
+  });
 
     return (
       <Provider store={store}>
