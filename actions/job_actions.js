@@ -1,5 +1,5 @@
 import axios from 'axios';
-import reverseGeocode from 'latlng-to-zip';
+import reverseGeocode from 'latlng-to-zip'; // for US
 import { Location, Permissions } from "expo";
 import qs from 'qs';
 

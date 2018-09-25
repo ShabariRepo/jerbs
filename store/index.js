@@ -11,6 +11,8 @@ const store = createStore(
         applyMiddleware(thunk)
     )
 );
+
+// to set api key for google maps api
 Location.setApiKey("AIzaSyABug706K7aycanQ10S2TNL86_eKg2DXLY");
 // location reverse geocode returns like this
 // Array [
