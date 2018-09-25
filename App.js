@@ -19,18 +19,18 @@ export default class App extends React.Component {
         screen: createBottomTabNavigator({
           map: { screen: MapScreen },
           deck: { screen: DeckScreen },
-          review: { 
+          review: {
             screen: createStackNavigator({
               review: { screen: ReviewScreen },
               settings: { screen: SettingsScreen }
             })
-           }
+          }
         })
       }
     });
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <MainNavigator />
       </View>
     );
