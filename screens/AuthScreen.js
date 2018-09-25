@@ -9,7 +9,7 @@ class AuthScreen extends React.Component {
     componentWillMount(){
         this.props.facebookLogin();
         // to remove the token when authscreen starts
-        //AsyncStorage.removeItem('fb_token');
+        AsyncStorage.removeItem('fb_token');
 
         // we dont know if this is going to work after fb login is complete
         // but not neccessary but if you modify the auth flow in anyway and want to come to this screen after authenticating then sure

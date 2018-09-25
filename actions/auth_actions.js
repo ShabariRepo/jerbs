@@ -25,6 +25,7 @@ export const facebookLogin = () => async dispatch => {
         // if token exists dispatch an action saying FB login is done
         dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
     } else {
+        console.log('no token going to facebook login modal');
         // else start FB login process
         doFacebookLogin(dispatch);
     }
