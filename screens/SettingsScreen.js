@@ -34,7 +34,7 @@ class SettingsScreen extends Component {
                 <Text>SettingsScreen</Text>
                 <Text>SettingsScreen</Text>
             </View>
-        )
+        );
     }
 }
 

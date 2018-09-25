@@ -10,7 +10,7 @@ class AuthScreen extends React.Component {
                 <Text>AuthScreen</Text>
                 <Text>AuthScreen</Text>
             </View>
-        )
+        );
     }
 }
 

@@ -47,7 +47,7 @@ class ReviewScreen extends Component {
                 <Text>ReviewScreen</Text>
                 <Text>ReviewScreen</Text>
             </View>
-        )
+        );
     }
 }
 
