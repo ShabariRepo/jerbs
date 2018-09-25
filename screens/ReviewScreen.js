@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, Platform } from "react-native";
 import { Button } from "react-native-elements";
 
 // this is something that wont change over time so keep it outside
@@ -16,7 +16,9 @@ class ReviewScreen extends Component {
         headerTitle: 'Review Jobs',
         headerStyle: {
             backgroundColor: '#b19cd9',
-            height: 50
+            //height: 50,
+            marginTop: Platform.OS === 'android' ? 24 : 0, // orig 24
+            //paddingBottom: Platform.OS === 'android' ? 15 : 0
         },
         headerTitleStyle: {
             alignSelf: 'center',

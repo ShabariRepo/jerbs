@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, Platform } from "react-native";
 
 // this is something that wont change over time so keep it outside
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -10,7 +10,9 @@ class SettingsScreen extends Component {
         headerTitle: 'Settings',
         headerStyle: {
             backgroundColor: '#b19cd9',
-            height: 50
+            //height: 50
+            marginTop: Platform.OS === 'android' ? 24 : 0, // orig 24
+            //paddingBottom: Platform.OS === 'android' ? 15 : 0
         },
         headerTitleStyle: {
             alignSelf: 'center',
