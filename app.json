@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ca.flutr.flutrrealtinder"
+    },
+    "android": {
+      "package": "ca.flutr.flutrrealtinder"
     }
   }
 }
