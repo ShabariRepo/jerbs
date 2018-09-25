@@ -9,9 +9,16 @@ const SLIDE_DATA = [
 ];
 
 class WelcomeScreen extends React.Component {
+
+    onSlidesComplete = () => {
+        // props only exist on instances NOT class level like the one in the ReviewScreen
+        // react native navigation AUTOMATICALLY passes a prop called navigation to anything it renders
+        this.props.navigation.navigate('auth');
+    }
+
     render(){
         return (
-            <Slides data={SLIDE_DATA} />
+            <Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />
         );
     }
 }

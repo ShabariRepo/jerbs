@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions } from "react-native";
+import { Button } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
+    renderLastSlide(index) {
+        if (index === this.props.data.length - 1) {
+            return (
+                // button tag is from react native el so need to pass in specific style property
+                <Button
+                    title="Continue"
+                    buttonStyle={styles.buttonStyle}
+                    //raised //this  draws a while box where the margin is not sure why
+                    onPress={this.props.onComplete} // if you put a () on this the callback will be called the instant the button is RENDERED this way its only when pressed
+                />
+            )
+        }
+    }
+
     renderSlides() {
         // slide is the object from welcome screen
-        return this.props.data.map((slide) => {
+        return this.props.data.map((slide, index) => {
             return (
                 <View key={slide.text} style={[styles.slideStyle, { backgroundColor: slide.color }]}>
                     <Text style={styles.slideText}>{slide.text}</Text>
+
+                    {this.renderLastSlide(index)}
                 </View>
             );
         });
@@ -42,6 +59,10 @@ const styles = {
         textAlign: 'center',
         textAlignVertical: 'center',
         color: '#fff'
+    },
+    buttonStyle: {
+        backgroundColor: '#0288D1',
+        marginTop: 40
     }
 };
 
