@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Dimensions, Platform } from "react-native";
+import { connect } from 'react-redux';
+import { Button } from 'react-native-elements';
+import { clearLikedJobs } from '../actions';
 
 // this is something that wont change over time so keep it outside
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -27,15 +30,16 @@ class SettingsScreen extends Component {
     render(){
         return (
             <View>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
+                <Button
+                    title="Clear Saved Jobs"
+                    large
+                    icon={{ name: 'delete-forever' }}
+                    backgroundColor="#F44336"
+                    onPress={this.props.clearLikedJobs}
+                />
             </View>
         );
     }
 }
 
-export default SettingsScreen;
+export default connect(null, { clearLikedJobs })(SettingsScreen);

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { 
-    LIKE_JOB 
+    LIKE_JOB,
+    CLEAR_LIKED_JOBS
 } from "../actions/types";
 
 export default function (state = [], action) {
@@ -11,7 +12,9 @@ export default function (state = [], action) {
             // only return the unique jobs found between the two
             return _.uniqBy([
                 action.payload, ...state
-            ], 'jobkey')
+            ], 'jobkey');
+        case CLEAR_LIKED_JOBS:
+            return []; // blow away the existing list of saved jobs
         default:
             return state;
     }
