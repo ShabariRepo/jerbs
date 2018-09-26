@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Dimensions, Platform } from "react-native";
 import { connect } from "react-redux";
 import { MapView } from 'expo';
-import { Card, Button } from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 
 import * as actions from '../actions';
 import Swipe from '../components/Swipe';
@@ -11,6 +11,17 @@ import Swipe from '../components/Swipe';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class DeckScreen extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        headerTitle: 'Jobs',
+        tabBarIcon: ({tintColor}) => (
+            <Icon
+                name="radio"
+                size={30}//name="bookmark"
+                color={tintColor}
+            />
+        )
+    });
+
     renderCard(job) {
         // get the lat long for the map view
         const initialRegion = {

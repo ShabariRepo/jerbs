@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Dimensions, Platform, ScrollView, Linking } from "react-native";
-import { Button, Card } from "react-native-elements";
+import { Button, Card, Icon } from "react-native-elements";
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
 
@@ -36,6 +36,13 @@ class ReviewScreen extends Component {
                 onPress={() => navigation.navigate('settings')}
                 backgroundColor="rgba(0,0,0,0.05)"
             ></Button>
+        ),
+        tabBarIcon: ({tintColor}) => (
+            <Icon
+                name="navigate"
+                size={30}//name="bookmark"
+                color={tintColor}
+            />
         )
     });
 
