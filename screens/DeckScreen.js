@@ -26,7 +26,7 @@ class DeckScreen extends Component {
                     <MapView
                         scrollEnabled={false} // no scrolling the map
                         style={{ flex: 1 }}
-                        cacheEnabled={Platform.OS === 'android' ? true : false} // cache true will show the map as an image and NOT as a map for performance // MORE for android its weird without this
+                        cacheEnabled={Platform.OS === 'android'} // cache true will show the map as an image and NOT as a map for performance // MORE for android its weird without this
                         initialRegion={initialRegion}
                     >
 

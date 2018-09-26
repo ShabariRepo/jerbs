@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Dimensions, Platform, ScrollView, Linking } from "react-native";
 import { Button, Card } from "react-native-elements";
 import { connect } from 'react-redux';
+import { MapView } from 'expo';
 
 // this is something that wont change over time so keep it outside
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -41,11 +42,24 @@ class ReviewScreen extends Component {
     renderLikedJobs() {
         return this.props.likedJobs.map(job => {
             // destructure obj so dont have to keep calling job
-            const { company, formattedRelativeTime, url } = job;
+            const { company, formattedRelativeTime, url, longitude, latitude, jobtitle, jobkey } = job;
+
+            const initialRegion = {
+                longitude,
+                latitude,
+                longitudeDelta: 0.045,
+                latitudeDelta: 0.02
+            };
 
             return (
-                <Card>
+                <Card title={jobtitle} key={jobkey}>
                     <View style={{ height: 200 }}>
+                        <MapView
+                            style={{ flex: 1 }}
+                            cacheEnabled={Platform.OS === 'android'} // android displaying as an image
+                            scrollEnabled={false} // no scrolling the map
+                            initialRegion={initialRegion}
+                        />
                         <View style={styles.detailWrapper}>
                             <Text style={styles.italics}>{company}</Text>
                             <Text style={styles.italics}>{formattedRelativeTime}</Text>
@@ -71,7 +85,8 @@ class ReviewScreen extends Component {
 }
 
 const styles = {
-    detailWrapper: { 
+    detailWrapper: {
+        marginTop: 10, 
         marginBottom: 10,
         flexDirection: 'row', // kind of like a bootstrap row
         justifyContent: 'space-around'        
