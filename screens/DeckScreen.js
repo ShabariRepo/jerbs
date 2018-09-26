@@ -44,9 +44,20 @@ class DeckScreen extends Component {
         );
     }
 
-    renderNoMoreCards() {
+    // OnPress() this is called by the swipe component not DeckScreen so it doesn't have the this.props.navigation
+    // so this is basically swipe component
+    // turn it into an arrow function
+    renderNoMoreCards = () => {
         return (
-            <Card title="No more jobs"></Card>
+            <Card title="No More Jobs">
+                <Button
+                    large
+                    title="Back To Map"
+                    icon={{ name: 'my-location' }}
+                    backgroundColor="#03A9F4"
+                    onPress={() => this.props.navigation.navigate('map')}
+                />
+            </Card>
         );
     }
 

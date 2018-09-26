@@ -4,7 +4,7 @@ import { View, Animated, PanResponder, Dimensions, LayoutAnimation, UIManager } 
 // this is something that wont change over time so keep it outside
 const SCREEN_WIDTH = Dimensions.get('window').width;
 // thresh hold for swiping 40% of the screen
-const SWIPE_THRESHOLD = 0.40 * SCREEN_WIDTH;
+const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 // duration of swipe out card
 const SWIPE_OUT_DURATION = 250;
 
