@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions, Platform, ScrollView } from "react-native";
+import { View, Text, Dimensions, Platform, ScrollView, Linking } from "react-native";
 import { Button, Card } from "react-native-elements";
 import { connect } from 'react-redux';
 
@@ -40,13 +40,21 @@ class ReviewScreen extends Component {
 
     renderLikedJobs() {
         return this.props.likedJobs.map(job => {
+            // destructure obj so dont have to keep calling job
+            const { company, formattedRelativeTime, url } = job;
+
             return (
                 <Card>
-                    <View style={{ heigher: 200 }}>
+                    <View style={{ height: 200 }}>
                         <View style={styles.detailWrapper}>
-                            <Text style={styles.italics}>{job.company}</Text>
-                            <Text style={styles.italics}>{job.formattedRelativeTime}</Text>
+                            <Text style={styles.italics}>{company}</Text>
+                            <Text style={styles.italics}>{formattedRelativeTime}</Text>
                         </View>
+                        <Button
+                            title="Apply Now"                        
+                            backgroundColor="#03A9F4"
+                            onPress={() => Linking.openURL(url)}
+                        />
                     </View>
                 </Card>
             );
