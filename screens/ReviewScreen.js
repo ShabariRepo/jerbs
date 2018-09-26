@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Dimensions, Platform } from "react-native";
 import { Button } from "react-native-elements";
+import { connect } from 'react-redux';
 
 // this is something that wont change over time so keep it outside
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -51,4 +52,8 @@ class ReviewScreen extends Component {
     }
 }
 
-export default ReviewScreen;
+function mapStateToProps(state){
+    return { likedJobs: state.likedJobs };
+}
+
+export default connect(mapStateToProps)(ReviewScreen);
