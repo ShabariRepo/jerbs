@@ -13,7 +13,9 @@ class Swipe extends Component {
     // always do a default as a practice, when writing re-usable components (to avoid type checking like if(onSwipeRight) do.. and avoid errors)
     static defaultProps = {
         onSwipeRight: () => { },
-        onSwipeLeft: () => { }
+        onSwipeLeft: () => { },
+        keyProp: 'id' // if there is no keyProp passed in use the id element
+        // in case we use this component without specifying a keyProp from deckScreen
     }
 
     constructor(props) {
@@ -154,7 +156,7 @@ class Swipe extends Component {
                 return (
                     //[this.getCardStyle(), styles.cardStyle]
                     <Animated.View
-                        key={item.id}
+                        key={item[this.props.keyProp]}
                         style={[this.getCardStyle(), styles.cardStyle, { zIndex: i * -1 }]}
                         {...this.state.panResponder.panHandlers}
                     >
@@ -172,12 +174,18 @@ class Swipe extends Component {
                 // this.state.index is the id so it will just reduce by a little
                 // so becomes 10 * the number of spaces the card is away from becoming the top card in the deck
                 <Animated.View 
-                    key={item.id} style={[styles.cardStyle, { zIndex: i * -1 }, { top: 10 * (i - this.state.index) }]}                
+                    key={item[this.props.keyProp]} style={[styles.cardStyle, { zIndex: i * -1 }, { top: 10 * (i - this.state.index) }]}                
                 >
                     {this.props.renderCard(item)}
                 </Animated.View>
             );
         }).reverse();
+
+        // this should resolve the issue of the reverse thing but its fine we assigned the zindex thing above
+        // also it works for android 6 SSG6 phone so we should be ok
+        // also remove the return above and add it as const deck =
+        // dont forget to import platform from react-native above & remove the .reverse()
+        //return Platform.OS === 'android' ? deck : deck.reverse();
     }
 
     render() {
