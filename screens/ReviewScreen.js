@@ -36,13 +36,6 @@ class ReviewScreen extends Component {
                 onPress={() => navigation.navigate('settings')}
                 backgroundColor="rgba(0,0,0,0.05)"
             ></Button>
-        ),
-        tabBarIcon: ({tintColor}) => (
-            <Icon
-                name="navigate"
-                size={30}//name="bookmark"
-                color={tintColor}
-            />
         )
     });
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
+import { Icon } from 'react-native-elements';
 
 import store from './store'; // no need to specify index.js
 
@@ -24,21 +25,36 @@ export default class App extends React.Component {
           deck: { screen: DeckScreen },
           review: {
             screen: createStackNavigator({
-              review: { screen: ReviewScreen },
+              review: {
+                screen: ReviewScreen
+              },
               settings: { screen: SettingsScreen }
+            }),
+            navigationOptions: () => ({
+              tabBarIcon: ({ tintColor }) => (
+                <Icon
+                  name="favorite"
+                  size={30}//name="bookmark"
+                  color={tintColor}
+                />
+              )
             })
+          }
+        }, {
+          tabBarOptions: {
+            labelStyle: { fontSize: 12 }
           }
         })
       }
     }, {
-      // by default react Navigation React Native Nav will render all the screens passed in above
-      // so this is why FB nav function fires even on the welcome screen
-      // so lazy load and disable eager loading
-      navigationOptions: {
-        tabBarVisible: false
-      },
-      lazy: true
-  });
+        // by default react Navigation React Native Nav will render all the screens passed in above
+        // so this is why FB nav function fires even on the welcome screen
+        // so lazy load and disable eager loading
+        navigationOptions: {
+          tabBarVisible: false
+        },
+        lazy: true
+      });
 
     return (
       <Provider store={store}>
