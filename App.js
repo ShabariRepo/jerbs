@@ -41,6 +41,8 @@ export default class App extends React.Component {
             })
           }
         }, {
+          tabBarPosition: 'bottom',
+          //swipeEnabled: false, // this makes the android feature where you can swipe between tabs (didnt happen on android 6 for us but ok)
           tabBarOptions: {
             labelStyle: { fontSize: 12 }
           }
