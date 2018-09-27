@@ -2,6 +2,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from '../reducers'; // do not have to specify index.js
+import { persistStore } from 'redux-persist';
 import { Location } from "expo";
 
 const store = createStore(
@@ -25,5 +26,8 @@ Location.setApiKey("AIzaSyABug706K7aycanQ10S2TNL86_eKg2DXLY");
 //       "region": "California",
 //       "street": "17th Avenue",
 //     },
+
+// persist the liked jobs data
+persistStore(store, null, null);// used to have this as well , whitelist: ['likedJobs']  but change in v5
 
 export default store;
